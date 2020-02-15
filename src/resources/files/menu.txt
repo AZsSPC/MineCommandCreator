@@ -1,0 +1,2 @@
+settings:engine:Program settings;Настройки приложения;Програмнi налаштування
+summon:egg-creeper.png:Create mobs;Генератор мобов;Створення створiннь
