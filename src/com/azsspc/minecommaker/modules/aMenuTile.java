@@ -1,19 +1,17 @@
 package com.azsspc.minecommaker.modules;
 
+import com.azsspc.minecommaker.Main;
 import static com.azsspc.minecommaker.Main.*;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
-public class MenuTile extends javax.swing.JPanel{
+public class aMenuTile extends javax.swing.JPanel{
  String title;
  Icon ic;
  String key;
 
- public MenuTile(String text, String iconText, String theKey){
+ public aMenuTile(String text, String iconText, String theKey){
   initComponents();
   key = theKey.replaceAll("\n", "");
   title = text.replaceAll("\n", "");
@@ -32,6 +30,7 @@ public class MenuTile extends javax.swing.JPanel{
   }
  }
 
+ // <editor-fold defaultstate="collapsed" desc="Auto-generated">    
  @SuppressWarnings("unchecked")
  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
  private void initComponents() {
@@ -73,18 +72,20 @@ public class MenuTile extends javax.swing.JPanel{
  }// </editor-fold>//GEN-END:initComponents
 
  private void onMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseClicked
-  System.out.println(title+": im triggered!");
+  MyScreen.sArea.setViewportView(Main.getUI(key));
+  MyScreen.pMain.updateUI();
  }//GEN-LAST:event_onMouseClicked
 
  private void onMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseEntered
-  this.setBackground(Color.gray);
-  this.setBorder(new MatteBorder(0, 6, 0, 0, new Color(200, 200, 200)));
+  setBackground(new Color(150, 150, 150));
+  setBorder(new MatteBorder(0, 6, 0, 0, new Color(200, 200, 200)));
  }//GEN-LAST:event_onMouseEntered
 
  private void onMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseExited
-  this.setBackground(new Color(102, 102, 102));
-  this.setBorder(new MatteBorder(0, 3, 0, 0, new Color(150, 150, 150)));
+  setBackground(new Color(102, 102, 102));
+  setBorder(new MatteBorder(0, 3, 0, 0, new Color(150, 150, 150)));
  }//GEN-LAST:event_onMouseExited
+// </editor-fold>   
 
 
  // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,35 +2,34 @@ package com.azsspc.minecommaker;
 
 import com.azsspc.minecommaker.modules.*;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import javax.swing.ImageIcon;
-import com.azsspc.minecommaker.*;
 import static com.azsspc.minecommaker.Main.*;
+import java.awt.*;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import javax.swing.*;
 
 public class Screen extends javax.swing.JFrame{
 
- public Screen(){
+ public Screen(boolean refresh){
   initComponents();
-  initAll();
+  setExtendedState(MAXIMIZED_BOTH);
   setIconImage(new ImageIcon(getClass().getResource("/resources/images/icon.png")).getImage());
 
   pMenu.setLayout(new MyLayout(3));
-  for(String[] menuList1:menuList){
-   pMenu.add(new MenuTile(menuList1[2].split(";")[selectedLang], menuList1[1], menuList1[0]));
+  sArea.setViewportView(new aMeet());
+  initAll();
+  if(refresh){
+   sArea.setViewportView(Main.getUI("settings"));
+   pMain.updateUI();
   }
-
+  setVisible(true);
  }
 
  void initAll(){
-  try{
-   String buf[] = Files.lines(Paths.get(new File(getClass().getResource("/resources/files/menu.txt").getFile()).getPath())).reduce("", (a, b)->a+b+"\n").split("\n");
-   menuList = new String[buf.length][3];
-   for(int i = 0; i<menuList.length; i++){
-    menuList[i] = buf[i].split(":");
-   }
-  }catch(Exception ex){
-   System.out.println(ex);
+  for(String[] mL:Data.getMenu()){
+   pMenu.add(new aMenuTile(mL[2].split(";")[Data.language()], mL[1], mL[0]));
   }
  }
 
@@ -42,17 +41,19 @@ public class Screen extends javax.swing.JFrame{
   sMenu = new javax.swing.JScrollPane();
   pMenu = new javax.swing.JPanel();
   sArea = new javax.swing.JScrollPane();
-  pArea = new javax.swing.JPanel();
-  jButton1 = new javax.swing.JButton();
 
   setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
   setTitle("Command Maker");
+  setMinimumSize(new java.awt.Dimension(1000, 600));
+  setName("Screen"); // NOI18N
+  setSize(new java.awt.Dimension(1000, 600));
 
   pMain.setBackground(new java.awt.Color(204, 204, 204));
   pMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+  pMain.setMinimumSize(new java.awt.Dimension(1000, 600));
 
   sMenu.setBackground(new java.awt.Color(0, 0, 0));
-  sMenu.setBorder(null);
+  sMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
   sMenu.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
   sMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
   sMenu.setMaximumSize(new java.awt.Dimension(250, 32767));
@@ -71,37 +72,14 @@ public class Screen extends javax.swing.JFrame{
   );
   pMenuLayout.setVerticalGroup(
    pMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-   .addGap(0, 322, Short.MAX_VALUE)
+   .addGap(0, 576, Short.MAX_VALUE)
   );
 
   sMenu.setViewportView(pMenu);
 
-  sArea.setBorder(null);
+  sArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
   sArea.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
   sArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-  pArea.setPreferredSize(new java.awt.Dimension(350, 300));
-
-  jButton1.setText("jButton1");
-
-  javax.swing.GroupLayout pAreaLayout = new javax.swing.GroupLayout(pArea);
-  pArea.setLayout(pAreaLayout);
-  pAreaLayout.setHorizontalGroup(
-   pAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pAreaLayout.createSequentialGroup()
-    .addContainerGap(267, Short.MAX_VALUE)
-    .addComponent(jButton1)
-    .addContainerGap())
-  );
-  pAreaLayout.setVerticalGroup(
-   pAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-   .addGroup(pAreaLayout.createSequentialGroup()
-    .addContainerGap()
-    .addComponent(jButton1)
-    .addContainerGap(288, Short.MAX_VALUE))
-  );
-
-  sArea.setViewportView(pArea);
 
   javax.swing.GroupLayout pMainLayout = new javax.swing.GroupLayout(pMain);
   pMain.setLayout(pMainLayout);
@@ -111,7 +89,7 @@ public class Screen extends javax.swing.JFrame{
     .addContainerGap()
     .addComponent(sMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-    .addComponent(sArea)
+    .addComponent(sArea, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
     .addContainerGap())
   );
   pMainLayout.setVerticalGroup(
@@ -119,7 +97,7 @@ public class Screen extends javax.swing.JFrame{
    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pMainLayout.createSequentialGroup()
     .addContainerGap()
     .addGroup(pMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-     .addComponent(sArea, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+     .addComponent(sArea, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
      .addComponent(sMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     .addContainerGap())
   );
@@ -141,8 +119,6 @@ public class Screen extends javax.swing.JFrame{
 
 
  // Variables declaration - do not modify//GEN-BEGIN:variables
- private javax.swing.JButton jButton1;
- public javax.swing.JPanel pArea;
  public javax.swing.JPanel pMain;
  public javax.swing.JPanel pMenu;
  public javax.swing.JScrollPane sArea;
