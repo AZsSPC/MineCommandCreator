@@ -16,24 +16,24 @@ public class SaveData{
  private ArrayList<String[]> MENU = new ArrayList<>();
 
  public SaveData(boolean initF) throws IOException{
-  System.out.println("---new SaveData---");
   initDataFile(initF);
   String[] s2;
-  for(int x = 0; x<staticDataStrings.length; x++){
-   System.out.printf("\n Read "+staticDataStrings[x][0]+":");
-   if(!staticDataStrings[x][0].equals("menu")){
-    for(String s:staticDataStrings[x][1].split("\n")){
+  for(String[] staticDataString:staticDataStrings){
+   System.out.printf("\n Read "+staticDataString[0]+":");
+   if(!staticDataString[0].equals("menu")){
+    for(String s:staticDataString[1].split("\n")){
      s2 = s.split(":");
      System.out.printf("\n   <"+s2[0]+">: [Text:"+s2[1]+"]");
-     BUFER.put(staticDataStrings[x][0]+":"+s2[0], s2[1]+"");
+     BUFER.put(staticDataString[0]+":"+s2[0], s2[1]+"");
     }
    }else{
-    for(String s:staticDataStrings[x][1].split("\n")){
+    for(String s:staticDataString[1].split("\n")){
      s2 = s.split(":");
      System.out.printf("\n   <"+s2[0]+">: [Image:"+s2[1]+"], [Text:"+s2[2]+"]");
      MENU.add(s2);
     }
-   }System.out.println("");
+   }
+   System.out.println("");
   }
   System.out.println("\n Read finished!");
 

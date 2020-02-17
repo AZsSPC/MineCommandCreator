@@ -2,7 +2,6 @@ package com.azsspc.minecommaker.modules;
 
 import static com.azsspc.minecommaker.Main.*;
 import com.azsspc.minecommaker.Screen;
-import java.awt.Component;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

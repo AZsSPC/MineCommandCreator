@@ -16,7 +16,7 @@ public class aMenuTile extends javax.swing.JPanel{
   key = theKey.replaceAll("\n", "");
   title = text.replaceAll("\n", "");
   try{
-   ic = (Icon) new ImageIcon(getClass().getResource("/resources/images/"+iconText.replaceAll("\n", "")));
+   ic = (Icon) new ImageIcon(getClass().getResource("/resources/items/"+iconText.replaceAll("\n", "")));
    if(ic.getIconHeight()==ic.getIconWidth()&&ic.getIconHeight()==64){
     DataLabel.setIcon(ic);
     DataLabel.setText(title);

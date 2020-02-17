@@ -1,14 +1,8 @@
 package com.azsspc.minecommaker;
 
 import com.azsspc.minecommaker.modules.*;
-import java.io.File;
-import java.nio.file.*;
 import javax.swing.ImageIcon;
 import static com.azsspc.minecommaker.Main.*;
-import java.awt.*;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import javax.swing.*;
 
 public class Screen extends javax.swing.JFrame{
 
